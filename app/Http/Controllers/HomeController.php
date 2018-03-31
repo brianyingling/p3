@@ -9,7 +9,8 @@ use Hackzilla\PasswordGenerator\RandomGenerator\Php7RandomGenerator;
 
 class HomeController extends Controller {
 
-    public function index($password = '') {
+    public function index(Request $request) {
+        $password = $request->session()->get('password');
         return 
             view('home.index')
                 ->with(['password' => $password]);
@@ -36,7 +37,8 @@ class HomeController extends Controller {
         
         $password = $generator->generatePassword(1);
 
-        return redirect('/')->with('password', $password);
+        return redirect('/')
+            ->with(['password' => $password]);
             
         // dump($request);
     }
