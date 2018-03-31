@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/password-generator', 'PasswordGeneratorController@index');
+// Route::get('/password-generator', 'PasswordGeneratorController@index');
+
+Route::get('/', 'HomeController@index');
