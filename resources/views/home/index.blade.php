@@ -3,6 +3,14 @@
 @section('content')
     <h1>Password Generator!</h1>
 
+    @if(count($errors) > 0)
+        <ul>
+            @foreach ($errors->all() as $error)
+                 <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <form method="POST" action="/">
         {{csrf_field()}}
 
@@ -13,14 +21,14 @@
         </div>
 
         <div class="form-check">
-            <input type="checkbox" class='form-check-input' value='' id='has-number'>
+            <input type="checkbox" class='form-check-input' id='has-number' name='has-number'>
             <label for="has-number" class="form-check-label">
                 Include a number
             </label>
         </div>
 
         <div class="form-check">
-            <input type="checkbox" class='form-check-input' value='' id='has-symbol'>
+            <input type="checkbox" class='form-check-input' id='has-symbol' name='has-symbol'>
             <label for="has-symbol" class="form-check-label">
                 Include a symbol
             </label>
@@ -31,7 +39,11 @@
         </button>   
     </form>
 
-    <div id="result">
-        Result goes here
-    </div>
+    
+
+    @if($password)
+        <div id="result">
+            {{$password}}
+        </div>
+    @endif
 @endsection

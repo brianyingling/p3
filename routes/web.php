@@ -11,10 +11,5 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/password-generator', 'PasswordGeneratorController@index');
-
 Route::get('/', 'HomeController@index');
+Route::post('/', 'HomeController@store');
