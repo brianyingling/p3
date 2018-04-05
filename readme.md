@@ -6,5 +6,6 @@
 - Bootstrap: <https://getbootstrap.com/>
 - php.net: <http://www.php.net/>
 - Laravel: <https://laravel.com/>
+- Hackzilla Password Generator: <https://github.com/hackzilla/password-generator>
 ## Notes for instructor
 None so far.
