@@ -12,8 +12,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $password = $request->session()->get('password');
-        return
-        view('home.index')
+        return view('home.index')
             ->with(['password' => $password]);
     }
 
