@@ -22,18 +22,20 @@ class HomeController extends Controller {
             'number-of-words' => 'required|integer|min:1|max:6'
         ]);
 
-        $numberOfWords = $request->input('number-of-words');
-        $hasNumber =$request->has('has-number');
-        $hasSymbol = $request->has('has-symbol');
+        $numberOfWords = (int) $request->input('number-of-words');
+        $hasNumber = (boolean) $request->has('has-number');
+        $hasSymbol = (boolean) $request->has('has-symbol');
+        $delimiter = $request->input('delimiter');
 
         $generator = new HybridPasswordGenerator();
 
         $generator
             ->setRandomGenerator(new Php7RandomGenerator())
-            ->setNumbers(false)
-            ->setSymbols(false)
+            ->setNumbers($hasNumber)
+            ->setSymbols($hasSymbol)
             ->setSegmentLength(3)
-            ->setSegmentCount(4);
+            ->setSegmentCount($numberOfWords)
+            ->setSegmentSeparator($delimiter);
         
         $password = $generator->generatePassword(1);
 
