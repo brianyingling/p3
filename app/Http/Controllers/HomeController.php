@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator;
 use Hackzilla\PasswordGenerator\RandomGenerator\Php7RandomGenerator;
+use Illuminate\Http\Request;
 
+class HomeController extends Controller
+{
 
-class HomeController extends Controller {
-
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $password = $request->session()->get('password');
-        return 
-            view('home.index')
-                ->with(['password' => $password]);
+        return
+        view('home.index')
+            ->with(['password' => $password]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         // validation
         $this->validate($request, [
-            'number-of-words' => 'required|integer|min:1|max:6'
+            'number-of-words' => 'required|integer|min:1|max:6',
         ]);
 
         $numberOfWords = (int) $request->input('number-of-words');
@@ -36,12 +38,10 @@ class HomeController extends Controller {
             ->setSegmentLength(3)
             ->setSegmentCount($numberOfWords)
             ->setSegmentSeparator($delimiter);
-        
+
         $password = $generator->generatePassword(1);
 
         return redirect('/')
             ->with(['password' => $password]);
-            
-        // dump($request);
     }
 }
